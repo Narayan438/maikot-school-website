@@ -1,0 +1,48 @@
+/* =====================================================
+   Tablet
+===================================================== */
+
+@media (max-width: 900px) {
+  .topbar-inner {
+    min-height: 46px;
+  }
+
+  .topbar-contact {
+    gap: 12px;
+  }
+
+  .topbar-contact .topbar-item:not(:first-child) {
+    display: none;
+  }
+
+  .topbar-social {
+    gap: 12px;
+  }
+}
+
+
+/* =====================================================
+   Mobile
+===================================================== */
+
+@media (max-width: 600px) {
+  .topbar-inner {
+    justify-content: center;
+  }
+
+  .topbar-contact {
+    justify-content: center;
+  }
+
+  .topbar-social {
+    display: none;
+  }
+
+  .topbar-contact .topbar-item {
+    display: none;
+  }
+
+  .topbar-contact .topbar-item:first-child {
+    display: inline-flex;
+  }
+}

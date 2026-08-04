@@ -194,3 +194,60 @@ a {
     left: 105%;
   }
 }
+/* =====================================================
+   Reusable Layout
+===================================================== */
+
+.container {
+  width: min(1400px, 92%);
+  margin-inline: auto;
+}
+
+
+/* =====================================================
+   Top Information Bar
+===================================================== */
+
+.topbar {
+  position: relative;
+  z-index: 1000;
+
+  color: var(--white);
+  background: var(--primary-dark);
+
+  font-size: 0.88rem;
+}
+
+.topbar-inner {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.topbar-contact,
+.topbar-social {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.topbar-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: rgba(255, 255, 255, 0.9);
+}
+
+a.topbar-item:hover,
+.topbar-social a:hover {
+  color: var(--white);
+}
+
+.topbar-social a {
+  color: rgba(255, 255, 255, 0.82);
+  transition: color var(--transition);
+}

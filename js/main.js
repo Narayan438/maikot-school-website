@@ -11,9 +11,9 @@ document.addEventListener(
 
 function initializeWebsite() {
   applySchoolConfiguration();
+  initializeTopbar(SCHOOL);
   setupPreloader();
 }
-
 
 /* =====================================================
    School Configuration
@@ -30,12 +30,6 @@ function applySchoolConfiguration() {
   applyTheme(SCHOOL.theme);
   applyPreloaderContent();
 }
-
-/* =====================================================
-   Theme Colors
-===================================================== */
-
-
 
 /* =====================================================
    Preloader Content
