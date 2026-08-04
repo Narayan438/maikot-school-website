@@ -1,23 +1,30 @@
-const SCHOOL={
+const SCHOOL = {
+  info: {
+    nameNp: "श्री माइकोट माध्यमिक विद्यालय",
+    nameEn: "Shree Maikot Secondary School",
+    address: "बारपाक सुलिकोट–६, ताकुकोट, गोरखा",
+    established: "वि.सं. २०१४"
+  },
 
-nameNp:"श्री माइकोट माध्यमिक विद्यालय",
+  contact: {
+    phone: "",
+    email: "",
+    website: ""
+  },
 
-nameEn:"Shree Maikot Secondary School",
+  social: {
+    facebook: "",
+    youtube: "",
+    tiktok: ""
+  },
 
-address:"बारपाक सुलिकोट-६, ताकुकोट, गोरखा",
+  theme: {
+    primary: "#174f9b",
+    secondary: "#10396f",
+    accent: "#d62d20"
+  },
 
-established:"२०१४",
-
-phone:"",
-
-email:"",
-
-website:"",
-
-logo:"assets/images/logo/logo.png",
-
-themeColor:"#174f9b",
-
-accent:"#d62d20"
-
+  assets: {
+    logo: "assets/images/logo/logo.png"
+  }
 };

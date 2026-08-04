@@ -1,0 +1,30 @@
+:root {
+  --primary: #174f9b;
+  --primary-dark: #10396f;
+  --primary-soft: #e7f0fb;
+
+  --accent: #d62d20;
+  --white: #ffffff;
+  --black: #111827;
+
+  --text: #16243a;
+  --muted: #64748b;
+  --page-bg: #f3f6fa;
+
+  --border: #dfe7f1;
+
+  --shadow-sm:
+    0 4px 14px rgba(15, 23, 42, 0.08);
+
+  --shadow-md:
+    0 14px 35px rgba(15, 23, 42, 0.15);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+
+  --container-width: 1400px;
+
+  --transition:
+    0.3s ease;
+}

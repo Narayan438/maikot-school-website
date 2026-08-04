@@ -1,0 +1,196 @@
+/* =====================================================
+   Base Reset
+===================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family:
+    "Noto Sans Devanagari",
+    "Mukta",
+    Arial,
+    sans-serif;
+
+  color: var(--text);
+  background: var(--page-bg);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* =====================================================
+   Main Content
+===================================================== */
+
+#mainContent {
+  min-height: 100vh;
+}
+
+
+/* =====================================================
+   Premium Preloader
+===================================================== */
+
+.site-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at top,
+      rgba(255, 255, 255, 0.16),
+      transparent 38%
+    ),
+    linear-gradient(
+      145deg,
+      var(--primary-dark),
+      var(--primary)
+    );
+
+  color: var(--white);
+
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s ease;
+}
+
+.site-preloader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.preloader-content {
+  width: min(100%, 480px);
+  text-align: center;
+}
+
+.preloader-logo-wrap {
+  width: 120px;
+  height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 22px;
+  padding: 12px;
+
+  border-radius: 50%;
+
+  background: var(--white);
+
+  box-shadow:
+    0 0 0 8px rgba(255, 255, 255, 0.12),
+    0 18px 45px rgba(0, 0, 0, 0.22);
+
+  animation:
+    preloaderPulse 1.8s ease-in-out infinite;
+}
+
+.preloader-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.preloader-school-name {
+  margin-bottom: 8px;
+
+  font-size: clamp(1.45rem, 4vw, 2rem);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.preloader-address {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+.preloader-progress {
+  position: relative;
+
+  width: min(100%, 300px);
+  height: 5px;
+
+  margin: 26px auto 14px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.preloader-progress span {
+  position: absolute;
+  top: 0;
+  left: -45%;
+
+  width: 45%;
+  height: 100%;
+
+  border-radius: inherit;
+  background: var(--white);
+
+  animation:
+    preloaderLoading 1.25s ease-in-out infinite;
+}
+
+.preloader-text {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.88rem;
+}
+
+@keyframes preloaderPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes preloaderLoading {
+  from {
+    left: -45%;
+  }
+
+  to {
+    left: 105%;
+  }
+}
