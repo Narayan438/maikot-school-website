@@ -27,39 +27,14 @@ function applySchoolConfiguration() {
 
   document.title = SCHOOL.info.nameNp;
 
-  applyThemeColors();
+  applyTheme(SCHOOL.theme);
   applyPreloaderContent();
 }
-
 
 /* =====================================================
    Theme Colors
 ===================================================== */
 
-function applyThemeColors() {
-  const root = document.documentElement;
-
-  if (SCHOOL.theme?.primary) {
-    root.style.setProperty(
-      "--primary",
-      SCHOOL.theme.primary
-    );
-  }
-
-  if (SCHOOL.theme?.secondary) {
-    root.style.setProperty(
-      "--primary-dark",
-      SCHOOL.theme.secondary
-    );
-  }
-
-  if (SCHOOL.theme?.accent) {
-    root.style.setProperty(
-      "--accent",
-      SCHOOL.theme.accent
-    );
-  }
-}
 
 
 /* =====================================================
