@@ -50,6 +50,10 @@ async function loadAllComponents() {
       "components/header.html"
     )
   ]);
+  loadComponent(
+  "#navbarComponent",
+  "components/navbar.html"
+),
 
   document.dispatchEvent(
     new CustomEvent("componentsLoaded")

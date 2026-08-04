@@ -13,9 +13,9 @@ function initializeWebsite() {
   applySchoolConfiguration();
   initializeTopbar(SCHOOL);
   initializeHeader(SCHOOL);
+  initializeHero(SCHOOL.hero);
   setupPreloader();
 }
-
 /* =====================================================
    School Configuration
 ===================================================== */

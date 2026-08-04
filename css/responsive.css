@@ -117,3 +117,77 @@
     font-size: 0.68rem;
   }
 }
+@media(max-width:900px){
+
+.nav-menu{
+
+display:none;
+
+}
+
+.menu-toggle{
+
+display:block;
+
+}
+
+}
+/* =====================================================
+   Hero Responsive
+===================================================== */
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: 580px;
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        90deg,
+        rgba(6, 20, 45, 0.88),
+        rgba(8, 28, 60, 0.58)
+      );
+  }
+
+  .hero-content {
+    max-width: 650px;
+    padding-block: 75px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 520px;
+  }
+
+  .hero-content {
+    padding-block: 60px 95px;
+  }
+
+  .hero-title {
+    font-size: 2.15rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    max-width: 260px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+
+  .hero-dots {
+    bottom: 28px;
+  }
+}
