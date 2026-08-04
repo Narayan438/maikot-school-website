@@ -1,8 +1,8 @@
-document.title=SCHOOL.nameNp;
-document.addEventListener("DOMContentLoaded", () => {
-  document.title = SCHOOL.info.nameNp;
-});
 "use strict";
+
+/* =====================================================
+   Website Initialization
+===================================================== */
 
 document.addEventListener(
   "componentsLoaded",
@@ -14,43 +14,88 @@ function initializeWebsite() {
   setupPreloader();
 }
 
+
+/* =====================================================
+   School Configuration
+===================================================== */
+
 function applySchoolConfiguration() {
+  if (typeof SCHOOL === "undefined") {
+    console.error("School configuration is not available.");
+    return;
+  }
+
   document.title = SCHOOL.info.nameNp;
 
-  document.documentElement.style.setProperty(
-    "--primary",
-    SCHOOL.theme.primary
-  );
+  applyThemeColors();
+  applyPreloaderContent();
+}
 
-  document.documentElement.style.setProperty(
-    "--primary-dark",
-    SCHOOL.theme.secondary
-  );
 
-  document.documentElement.style.setProperty(
-    "--accent",
-    SCHOOL.theme.accent
-  );
+/* =====================================================
+   Theme Colors
+===================================================== */
 
-  const logo = document.getElementById("preloaderLogo");
+function applyThemeColors() {
+  const root = document.documentElement;
+
+  if (SCHOOL.theme?.primary) {
+    root.style.setProperty(
+      "--primary",
+      SCHOOL.theme.primary
+    );
+  }
+
+  if (SCHOOL.theme?.secondary) {
+    root.style.setProperty(
+      "--primary-dark",
+      SCHOOL.theme.secondary
+    );
+  }
+
+  if (SCHOOL.theme?.accent) {
+    root.style.setProperty(
+      "--accent",
+      SCHOOL.theme.accent
+    );
+  }
+}
+
+
+/* =====================================================
+   Preloader Content
+===================================================== */
+
+function applyPreloaderContent() {
+  const logo =
+    document.getElementById("preloaderLogo");
+
   const schoolName =
     document.getElementById("preloaderSchoolName");
+
   const address =
     document.getElementById("preloaderAddress");
 
-  if (logo) {
+  if (logo && SCHOOL.assets?.logo) {
     logo.src = SCHOOL.assets.logo;
     logo.alt = `${SCHOOL.info.nameNp} लोगो`;
   }
 
   if (schoolName) {
-    schoolName.textContent = SCHOOL.info.nameNp;
+    schoolName.textContent =
+      SCHOOL.info.nameNp;
   }
 
   if (address) {
-    address.textContent = SCHOOL.info.address;
+    address.textContent =
+      SCHOOL.info.address;
   }
 }
+
+
+/* =====================================================
+   Preloader
+===================================================== */
 
 function setupPreloader() {
   const preloader =
@@ -60,13 +105,27 @@ function setupPreloader() {
     return;
   }
 
-  window.addEventListener("load", () => {
-    setTimeout(() => {
+  const hidePreloader = () => {
+    window.setTimeout(() => {
       preloader.classList.add("is-hidden");
 
-      setTimeout(() => {
+      window.setTimeout(() => {
         preloader.remove();
       }, 700);
     }, 800);
-  });
+  };
+
+  /*
+   * Components fetch भएर आउँदासम्म window load
+   * भइसकेको हुन सक्छ। त्यसैले दुवै अवस्था जाँचिएको हो।
+   */
+  if (document.readyState === "complete") {
+    hidePreloader();
+  } else {
+    window.addEventListener(
+      "load",
+      hidePreloader,
+      { once: true }
+    );
+  }
 }
