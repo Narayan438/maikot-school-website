@@ -14,6 +14,7 @@ html {
 
 body {
   min-height: 100vh;
+
   font-family:
     "Noto Sans Devanagari",
     "Mukta",
@@ -22,6 +23,10 @@ body {
 
   color: var(--text);
   background: var(--page-bg);
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 img {
@@ -36,9 +41,23 @@ select {
   font: inherit;
 }
 
+button {
+  border: 0;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+
+/* =====================================================
+   Reusable Layout
+===================================================== */
+
+.container {
+  width: min(1400px, 92%);
+  margin-inline: auto;
 }
 
 
@@ -66,6 +85,8 @@ a {
 
   padding: 24px;
 
+  color: var(--white);
+
   background:
     radial-gradient(
       circle at top,
@@ -77,8 +98,6 @@ a {
       var(--primary-dark),
       var(--primary)
     );
-
-  color: var(--white);
 
   transition:
     opacity 0.6s ease,
@@ -122,6 +141,7 @@ a {
 .preloader-logo {
   width: 100%;
   height: 100%;
+
   object-fit: contain;
   border-radius: 50%;
 }
@@ -194,14 +214,6 @@ a {
     left: 105%;
   }
 }
-/* =====================================================
-   Reusable Layout
-===================================================== */
-
-.container {
-  width: min(1400px, 92%);
-  margin-inline: auto;
-}
 
 
 /* =====================================================
@@ -242,6 +254,11 @@ a {
   color: rgba(255, 255, 255, 0.9);
 }
 
+a.topbar-item,
+.topbar-social a {
+  transition: color var(--transition);
+}
+
 a.topbar-item:hover,
 .topbar-social a:hover {
   color: var(--white);
@@ -249,19 +266,21 @@ a.topbar-item:hover,
 
 .topbar-social a {
   color: rgba(255, 255, 255, 0.82);
-  transition: color var(--transition);
 }
+
+
 /* =====================================================
    Reusable Buttons
 ===================================================== */
 
 .btn {
+  min-height: 44px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 9px;
 
-  min-height: 44px;
   padding: 10px 18px;
 
   border: 1px solid transparent;
@@ -327,7 +346,6 @@ a.topbar-item:hover,
 .header-logo-wrap {
   width: 92px;
   height: 92px;
-
   flex: 0 0 92px;
 
   display: flex;
@@ -441,62 +459,148 @@ a.topbar-item:hover,
   color: var(--primary-dark);
   font-size: 0.92rem;
 }
+
+
 /* =====================================================
    Navbar
 ===================================================== */
 
-.navbar{
-    background:#174f9b;
-    position:sticky;
-    top:0;
-    z-index:1000;
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 5000;
+
+  width: 100%;
+
+  color: var(--white);
+  background: var(--primary);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  box-shadow:
+    0 8px 22px rgba(15, 23, 42, 0.12);
 }
 
-.navbar-inner{
+.navbar-inner {
+  position: relative;
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+  min-height: 58px;
 
-    min-height:60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.nav-menu{
+.menu-toggle {
+  display: none;
 
-    display:flex;
-    gap:30px;
+  width: 44px;
+  height: 44px;
 
-    list-style:none;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 9px;
+
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+
+  font-size: 1.65rem;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
 }
 
-.nav-menu a{
-
-    color:#fff;
-
-    font-weight:600;
-
-    padding:20px 0;
-
-    display:block;
-
-    transition:.3s;
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
-.nav-menu a:hover{
-
-    color:#ffd54a;
+.menu-toggle:active {
+  transform: scale(0.96);
 }
+
+.menu-toggle:focus-visible,
+.nav-menu a:focus-visible {
+  outline: 3px solid #ffd54a;
+  outline-offset: 3px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  list-style: none;
+}
+
+.nav-menu li {
+  position: relative;
+}
+
+.nav-menu a {
+  min-height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 8px 18px;
+
+  border-radius: 999px;
+
+  color: rgba(255, 255, 255, 0.94);
+
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+
+  transition:
+    color var(--transition),
+    background var(--transition),
+    transform var(--transition);
+}
+
+.nav-menu a:hover {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.14);
+
+  transform: translateY(-1px);
+}
+
+.nav-menu a.active,
+.nav-menu a[aria-current="page"] {
+  color: var(--primary-dark);
+  background: var(--white);
+
+  box-shadow:
+    0 5px 14px rgba(15, 23, 42, 0.14);
+}
+
+
 /* =====================================================
    Hero Section
 ===================================================== */
 
 .hero {
   position: relative;
+
   min-height: 650px;
-  overflow: hidden;
 
   display: flex;
   align-items: center;
+
+  overflow: hidden;
 
   color: var(--white);
   background: var(--primary-dark);
@@ -650,6 +754,7 @@ a.topbar-item:hover,
   border-radius: 50%;
 
   background: transparent;
+
   cursor: pointer;
 
   transition:
@@ -660,6 +765,7 @@ a.topbar-item:hover,
 
 .hero-dot.is-active {
   width: 32px;
+
   border-radius: 999px;
   background: var(--white);
 }
@@ -689,7 +795,8 @@ a.topbar-item:hover,
   border-radius: 999px;
   background: var(--white);
 
-  animation: heroScrollIndicator 1.7s infinite;
+  animation:
+    heroScrollIndicator 1.7s infinite;
 }
 
 @keyframes heroScrollIndicator {

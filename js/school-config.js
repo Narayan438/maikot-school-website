@@ -7,9 +7,9 @@ const SCHOOL = {
   },
 
   contact: {
-    phone: "",
-    email: "",
-    website: ""
+    phone: "1234567890",
+    email: "abcnames@gmail.com",
+    website: "narayankhatri.com.np"
   },
 
   social: {
