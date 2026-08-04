@@ -12,6 +12,7 @@ document.addEventListener(
 function initializeWebsite() {
   applySchoolConfiguration();
   initializeTopbar(SCHOOL);
+  initializeHeader(SCHOOL);
   setupPreloader();
 }
 

@@ -46,3 +46,74 @@
     display: inline-flex;
   }
 }
+/* =====================================================
+   Header Responsive
+===================================================== */
+
+@media (max-width: 1000px) {
+  .header-inner {
+    min-height: 108px;
+  }
+
+  .header-logo-wrap {
+    width: 78px;
+    height: 78px;
+    flex-basis: 78px;
+  }
+
+  .header-download {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .header-inner {
+    min-height: 92px;
+    gap: 14px;
+  }
+
+  .school-brand {
+    gap: 12px;
+  }
+
+  .header-logo-wrap {
+    width: 64px;
+    height: 64px;
+    flex-basis: 64px;
+    padding: 6px;
+  }
+
+  .header-school-name {
+    font-size: 1.22rem;
+  }
+
+  .header-school-name-en {
+    display: none;
+  }
+
+  .header-established {
+    margin-top: 4px;
+    padding: 3px 8px;
+    font-size: 0.72rem;
+  }
+
+  .header-call span {
+    display: none;
+  }
+
+  .header-call svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 430px) {
+  .header-school-name {
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+
+  .header-established {
+    font-size: 0.68rem;
+  }
+}

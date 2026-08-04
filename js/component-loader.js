@@ -34,10 +34,22 @@ async function loadComponent(selector, componentPath) {
  * Loads all shared website components.
  */
 async function loadAllComponents() {
-  await loadComponent(
-    "#preloaderComponent",
-    "components/preloader.html"
-  );
+  await Promise.all([
+    loadComponent(
+      "#preloaderComponent",
+      "components/preloader.html"
+    ),
+
+    loadComponent(
+      "#topbarComponent",
+      "components/topbar.html"
+    ),
+
+    loadComponent(
+      "#headerComponent",
+      "components/header.html"
+    )
+  ]);
 
   document.dispatchEvent(
     new CustomEvent("componentsLoaded")

@@ -26,5 +26,9 @@ const SCHOOL = {
 
   assets: {
     logo: "assets/images/logo/logo.png"
+  },
+
+  downloads: {
+    prospectus: ""
   }
 };
