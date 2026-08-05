@@ -22,6 +22,7 @@ function initializeWebsite() {
   applySchoolConfiguration();
   initializeTopbar(SCHOOL);
   initializeHeader(SCHOOL);
+  initializeNavbar();
   initializeHero(SCHOOL.hero);
   initializePrincipal(SCHOOL.principal);
 }
