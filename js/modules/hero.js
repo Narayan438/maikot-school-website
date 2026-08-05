@@ -40,22 +40,16 @@ function initializeHero(hero) {
   startHeroSlider();
 }
 
-
 /**
  * Sets hero heading and buttons.
  *
  * @param {Object} hero
  */
 function setHeroContent(hero) {
-  const title =
-    document.getElementById("heroTitle");
-
-  const subtitle =
-    document.getElementById("heroSubtitle");
-
+  const title = document.getElementById("heroTitle");
+  const subtitle = document.getElementById("heroSubtitle");
   const primaryButton =
     document.getElementById("heroPrimaryButton");
-
   const secondaryButton =
     document.getElementById("heroSecondaryButton");
 
@@ -70,7 +64,6 @@ function setHeroContent(hero) {
   if (primaryButton) {
     primaryButton.textContent =
       hero.primaryButton?.text || "";
-
     primaryButton.href =
       hero.primaryButton?.url || "#";
   }
@@ -78,34 +71,38 @@ function setHeroContent(hero) {
   if (secondaryButton) {
     secondaryButton.textContent =
       hero.secondaryButton?.text || "";
-
     secondaryButton.href =
       hero.secondaryButton?.url || "#";
   }
 }
 
-
 /**
- * Renders hero background slides.
+ * Renders hero background slides using DOM APIs.
  *
  * @param {HTMLElement} container
  * @param {Array} slides
  */
 function renderHeroSlides(container, slides) {
-  container.innerHTML = slides
-    .map(
-      (slide, index) => `
-        <div
-          class="hero-slide${index === 0 ? " is-active" : ""}"
-          style="background-image: url('${slide.image}')"
-          role="img"
-          aria-label="${slide.alt || ""}"
-        ></div>
-      `
-    )
-    .join("");
-}
+  const fragment = document.createDocumentFragment();
 
+  slides.forEach((slide, index) => {
+    const slideElement = document.createElement("div");
+
+    slideElement.className =
+      `hero-slide${index === 0 ? " is-active" : ""}`;
+    slideElement.style.backgroundImage =
+      `url("${String(slide.image || "").replace(/"/g, "%22")}")`;
+    slideElement.setAttribute("role", "img");
+    slideElement.setAttribute(
+      "aria-label",
+      slide.alt || ""
+    );
+
+    fragment.appendChild(slideElement);
+  });
+
+  container.replaceChildren(fragment);
+}
 
 /**
  * Renders hero navigation dots.
@@ -114,19 +111,26 @@ function renderHeroSlides(container, slides) {
  * @param {number} slideCount
  */
 function renderHeroDots(container, slideCount) {
-  container.innerHTML = Array.from(
-    { length: slideCount },
-    (_, index) => `
-      <button
-        class="hero-dot${index === 0 ? " is-active" : ""}"
-        type="button"
-        aria-label="स्लाइड ${index + 1}"
-        data-slide-index="${index}"
-      ></button>
-    `
-  ).join("");
-}
+  const fragment = document.createDocumentFragment();
 
+  for (let index = 0; index < slideCount; index += 1) {
+    const dot = document.createElement("button");
+
+    dot.className =
+      `hero-dot${index === 0 ? " is-active" : ""}`;
+    dot.type = "button";
+    dot.dataset.slideIndex = String(index);
+    dot.setAttribute("aria-label", `स्लाइड ${index + 1}`);
+
+    if (index === 0) {
+      dot.setAttribute("aria-current", "true");
+    }
+
+    fragment.appendChild(dot);
+  }
+
+  container.replaceChildren(fragment);
+}
 
 /**
  * Starts automatic and manual slide navigation.
@@ -150,32 +154,47 @@ function startHeroSlider() {
   const showSlide = (index) => {
     slides[currentIndex]?.classList.remove("is-active");
     dots[currentIndex]?.classList.remove("is-active");
+    dots[currentIndex]?.removeAttribute("aria-current");
 
     currentIndex = index;
 
     slides[currentIndex]?.classList.add("is-active");
     dots[currentIndex]?.classList.add("is-active");
+    dots[currentIndex]?.setAttribute("aria-current", "true");
+  };
+
+  const stopAutoPlay = () => {
+    if (sliderTimer !== null) {
+      window.clearInterval(sliderTimer);
+      sliderTimer = null;
+    }
   };
 
   const startAutoPlay = () => {
+    stopAutoPlay();
+
+    if (slides.length < 2 || document.hidden) {
+      return;
+    }
+
     sliderTimer = window.setInterval(() => {
-      const nextIndex =
-        (currentIndex + 1) % slides.length;
-
-      showSlide(nextIndex);
+      showSlide((currentIndex + 1) % slides.length);
     }, HERO_SLIDE_INTERVAL);
-  };
-
-  const restartAutoPlay = () => {
-    window.clearInterval(sliderTimer);
-    startAutoPlay();
   };
 
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
       showSlide(index);
-      restartAutoPlay();
+      startAutoPlay();
     });
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopAutoPlay();
+    } else {
+      startAutoPlay();
+    }
   });
 
   startAutoPlay();
