@@ -10,11 +10,20 @@ document.addEventListener(
 );
 
 function initializeWebsite() {
+  setupPreloader();
+
+  if (typeof SCHOOL === "undefined") {
+    console.error(
+      "School configuration is not available."
+    );
+    return;
+  }
+
   applySchoolConfiguration();
   initializeTopbar(SCHOOL);
   initializeHeader(SCHOOL);
   initializeHero(SCHOOL.hero);
-  setupPreloader();
+  initializePrincipal(SCHOOL.principal);
 }
 /* =====================================================
    School Configuration
