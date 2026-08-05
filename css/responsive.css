@@ -261,3 +261,82 @@
     bottom: 28px;
   }
 }
+/* =====================================================
+   About Section Responsive
+===================================================== */
+
+@media (max-width: 1000px) {
+  .section {
+    padding: 75px 0;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 52px;
+  }
+
+  .about-media {
+    width: min(100%, 760px);
+    margin-inline: auto;
+  }
+
+  .about-image-wrap,
+  .about-image {
+    min-height: 440px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .about-media {
+    padding: 0 0 20px 20px;
+  }
+
+  .about-image-wrap,
+  .about-image {
+    min-height: 330px;
+  }
+
+  .about-established-card {
+    right: 14px;
+    bottom: 14px;
+
+    min-width: 110px;
+
+    padding: 13px 16px;
+  }
+
+  .about-established-card strong {
+    font-size: 1.45rem;
+  }
+
+  .about-lead {
+    font-size: 1.02rem;
+  }
+
+  .about-description {
+    font-size: 0.95rem;
+  }
+
+  .about-highlight {
+    grid-template-columns: 40px 1fr;
+
+    padding: 13px;
+  }
+
+  .about-highlight-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .about-button {
+    width: 100%;
+  }
+}
